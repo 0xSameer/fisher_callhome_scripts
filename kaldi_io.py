@@ -44,7 +44,7 @@ def kalditext2python(textfile, outfolder):
                         splitted = splitted[:-1]
                     tmparr.append(list(map(float, splitted)))
             seg_data[arrname] = np.array(tmparr).astype(np.float32)
-            outpath = os.path.join(outfolder, arrname+".np")
+            outpath = os.path.join(outfolder, segname+".np")
             pbar.set_description("saving: {0:s}".format(outpath))
             pickle.dump(seg_data, open(outpath, "wb"))
             pbar.update(1)
