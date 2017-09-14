@@ -53,9 +53,14 @@ steps/compute_cmvn_stats.sh data/test exp/make_fbank/test $fbankdir
 steps/compute_cmvn_stats.sh data/dev2 exp/make_fbank/dev2 $fbankdir
 
 echo "apply cmvn"
-nice apply-cmvn --norm-vars=true --utt2spk=ark:data/train/utt2spk scp:data/train/cmvn.scp scp:data/train/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:train_fbank.ark
-nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev/utt2spk scp:data/dev/cmvn.scp scp:data/dev/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:dev_fbank.ark
-nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev2/utt2spk scp:data/dev2/cmvn.scp scp:data/dev2/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:dev2_fbank.ark
-nice apply-cmvn --norm-vars=true --utt2spk=ark:data/test/utt2spk scp:data/test/cmvn.scp scp:data/test/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:test_fbank.ark
+#nice apply-cmvn --norm-vars=true --utt2spk=ark:data/train/utt2spk scp:data/train/cmvn.scp scp:data/train/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:train_fbank.ark
+#nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev/utt2spk scp:data/dev/cmvn.scp scp:data/dev/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:dev_fbank.ark
+#nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev2/utt2spk scp:data/dev2/cmvn.scp scp:data/dev2/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:dev2_fbank.ark
+#nice apply-cmvn --norm-vars=true --utt2spk=ark:data/test/utt2spk scp:data/test/cmvn.scp scp:data/test/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:test_fbank.ark
+
+nice apply-cmvn --norm-vars=true --utt2spk=ark:data/train/utt2spk scp:data/train/cmvn.scp scp:data/train/feats.scp ark:- | copy-feats ark:- ark,t:train_fbank.ark
+nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev/utt2spk scp:data/dev/cmvn.scp scp:data/dev/feats.scp ark:- | copy-feats ark:- ark,t:dev_fbank.ark
+nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev2/utt2spk scp:data/dev2/cmvn.scp scp:data/dev2/feats.scp ark:- | copy-feats ark:- ark,t:dev2_fbank.ark
+nice apply-cmvn --norm-vars=true --utt2spk=ark:data/test/utt2spk scp:data/test/cmvn.scp scp:data/test/feats.scp ark:- | copy-feats ark:- ark,t:test_fbank.ark
 
 # longjob -28day -c "nice python kaldi_io.py dev.ark dev"

@@ -58,4 +58,9 @@ nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev/utt2spk scp:data/dev/cmv
 nice apply-cmvn --norm-vars=true --utt2spk=ark:data/dev2/utt2spk scp:data/dev2/cmvn.scp scp:data/dev2/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:dev2_mfcc.ark
 nice apply-cmvn --norm-vars=true --utt2spk=ark:data/test/utt2spk scp:data/test/cmvn.scp scp:data/test/feats.scp ark:- | add-deltas ark:- ark:- | copy-feats ark:- ark,t:test_mfcc.ark
 
-# longjob -28day -c "nice python kaldi_io.py dev.ark dev"
+#python kaldi_io.py dev2_mfcc.ark fisher_dev2
+#python kaldi_io.py dev_mfcc.ark fisher_dev
+#python kaldi_io.py test_mfcc.ark fisher_test
+#python kaldi_io.py train_mfcc.ark fisher_train
+
+
